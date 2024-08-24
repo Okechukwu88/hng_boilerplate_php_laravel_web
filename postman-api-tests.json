@@ -1,85 +1,12 @@
 {
 	"info": {
-		"_postman_id": "ec04e834-79af-43d9-b790-67224bba39d8",
-		"name": "APIs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "34735841",
-		"_collection_link": "https://mojisola-2659.postman.co/workspace/Boilerplate~550e0f2d-ac66-4eb3-8e58-8488f99dcf27/collection/34735841-ec04e834-79af-43d9-b790-67224bba39d8?action=share&source=collection_link&creator=34735841"
+		"_postman_id": "1f3f470c-b9dd-4f78-9a7a-c15cac0a1158",
+		"name": "Boilerplate_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36810946",
+		"_collection_link": "https://hng-11-7685.postman.co/workspace/Bulldozzer%3A-Delve_Boilerplate-T~1cf3536b-429d-4351-99e6-d4ab9db13627/collection/36810946-1f3f470c-b9dd-4f78-9a7a-c15cac0a1158?action=share&source=collection_link&creator=36810946"
 	},
 	"item": [
-		{
-			"name": "Authentication",
-			"item": [
-				{
-					"name": "Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"first_name\": \"Mojisola\",\n  \"last_name\": \"Otusheso\",\n  \"email\": \"mj@example.com\",\n  \"password\": \"Mojisola@24\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/register",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"email\": \"bulldozeradmin@hng.com\",\n  \"password\": \"@Bulldozer01\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/login",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Jobs",
 			"item": [
@@ -90,12 +17,22 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Check if the POST request was successful (status code 201 or 202)",
 									"pm.test(\"Successful POST request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
-									"});"
+									"",
+									"// Check if the response time is less than 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"// Log the response time to the console",
+									"console.log(\"Response time: \" + pm.response.responseTime + \" ms\");",
+									"",
+									"// Log the status code to the console",
+									"console.log(\"Status code: \" + pm.response.code);",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -124,13 +61,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -143,22 +76,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"jobs"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs"
 					},
 					"response": []
 				},
@@ -169,12 +87,22 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"// Check if the GET request was successful (status code 200)",
+									"pm.test(\"Successful GET request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Response time is less than 400ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);",
-									"});"
+									"",
+									"// Check if the response time is less than 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"// Log the response time to the console",
+									"console.log(\"Response time: \" + pm.response.responseTime + \" ms\");",
+									"",
+									"// Log the status code to the console",
+									"console.log(\"Status code: \" + pm.response.code);",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -203,32 +131,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5MDAwOSwiZXhwIjoxNzI0MzkzNjA5LCJuYmYiOjE3MjQzOTAwMDksImp0aSI6InBEUEtoemdhanVWQlJ2ZlEiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.KjqEChuDG-jDnvHjnUC6WxqpnKsBMvbm-nxcJWW3EAk",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
 						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"jobs"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs"
 					},
 					"response": []
 				},
@@ -239,12 +148,22 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"// Check if the GET request was successful (status code 200)",
+									"pm.test(\"Successful GET request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Successful GET request\", function () {",
-									"    pm.expect(pm.response.code).to.be.below(300);",
-									"});"
+									"",
+									"// Check if the response time is less than 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"// Log the response time to the console",
+									"console.log(\"Response time: \" + pm.response.responseTime + \" ms\");",
+									"",
+									"// Log the status code to the console",
+									"console.log(\"Status code: \" + pm.response.code);",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -273,23 +192,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs/9cd515b4-10d6-42b3-b320-0928d85a40f9",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"jobs",
-								"9cd515b4-10d6-42b3-b320-0928d85a40f9"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs/9cd488d8-33f2-4798-9280-7e1285471fb0"
 					},
 					"response": []
 				},
@@ -322,8 +225,8 @@
 									"pm.test(\"Successful DELETE request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -334,33 +237,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2RlcGxveW1lbnQuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyMjk1ODExNywiZXhwIjoxNzIyOTYxNzE3LCJuYmYiOjE3MjI5NTgxMTcsImp0aSI6InZzWXhLS1ZLQ3ZuQ0N0NWwiLCJzdWIiOiI5Y2IzOGU3NC1kNmUzLTRhNmItOWQ2Zi01YWNjNDU0NGYyNTYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.7q7TLF_GKtuQ3nNcLX7ZCsD2WQ5kIjoVNocmD2NGXdA",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2RlcGxveW1lbnQuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyMjk1ODExNywiZXhwIjoxNzIyOTYxNzE3LCJuYmYiOjE3MjI5NTgxMTcsImp0aSI6InZzWXhLS1ZLQ3ZuQ0N0NWwiLCJzdWIiOiI5Y2IzOGU3NC1kNmUzLTRhNmItOWQ2Zi01YWNjNDU0NGYyNTYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.7q7TLF_GKtuQ3nNcLX7ZCsD2WQ5kIjoVNocmD2NGXdA"
+							}
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs/9cd53ba3-164c-4797-b4a7-62b6c0ba609e",
-							"protocol": "https",
-							"host": [
-								"deployment",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"jobs",
-								"9cd53ba3-164c-4797-b4a7-62b6c0ba609e"
-							]
-						}
+						"url": "https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs/9cd53ba3-164c-4797-b4a7-62b6c0ba609e"
 					},
 					"response": []
 				},
@@ -371,12 +254,21 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"// Check if the GET request was successful (status code 200)",
+									"pm.test(\"Successful GET request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
-									"});"
+									"",
+									"// Check if the response time is less than 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"// Log the response time to the console",
+									"console.log(\"Response time: \" + pm.response.responseTime + \" ms\");",
+									"",
+									"// Log the status code to the console",
+									"console.log(\"Status code: \" + pm.response.code);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -406,7 +298,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs?id=9cd3626b-df1f-4029-b9dd-13da4e41e868",
+							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/jobs?id=9cd488d8-33f2-4798-9280-7e1285471fb0",
 							"protocol": "https",
 							"host": [
 								"staging",
@@ -423,7 +315,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "9cd3626b-df1f-4029-b9dd-13da4e41e868"
+									"value": "9cd488d8-33f2-4798-9280-7e1285471fb0"
 								}
 							]
 						}
@@ -442,11 +334,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Successful GET request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -476,32 +368,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NTI1NCwiZXhwIjoxNzI0Mzk4ODU0LCJuYmYiOjE3MjQzOTUyNTQsImp0aSI6IlU0VVBlQU53dG10cVQ3UnQiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.bW97Ai-r9QdolEhSuK7_EDdbuhvy_6QSiu9f-F8iJh8",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
 						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/languages",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"languages"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/languages"
 					},
 					"response": []
 				},
@@ -515,8 +388,8 @@
 									"pm.test(\"Successful POST request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -546,41 +419,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NTI1NCwiZXhwIjoxNzI0Mzk4ODU0LCJuYmYiOjE3MjQzOTUyNTQsImp0aSI6IlU0VVBlQU53dG10cVQ3UnQiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.bW97Ai-r9QdolEhSuK7_EDdbuhvy_6QSiu9f-F8iJh8",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"language\":\"Italian\",\n  \"code\": \"104\"\n}",
+							"raw": "{\n  \"language\":\"Chinese\",\n  \"code\": \"105\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/languages",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"languages"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/languages"
 					},
 					"response": []
 				}
@@ -596,11 +450,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Successful GET request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -628,30 +483,20 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"help-center",
-								"topics"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics"
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Create an article",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -679,8 +524,8 @@
 									"pm.test(\"Successful POST request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -691,42 +536,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": \"9cd3626b-df1f-4029-b9dd-13da4e41e868\",\n    \"title\": \"About QAs\",\n    \"content\": \"Testing Types and techniques\"\n}\n",
+							"raw": "{\n    \"user_id\": \"9cd3626b-df1f-4029-b9dd-13da4e41e868\",\n    \"title\": \"About Testers\",\n    \"content\": \"Testing Types and techniques\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"help-center",
-								"topics"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics"
 					},
 					"response": []
 				},
@@ -756,11 +581,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Successful PATCH request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -771,13 +596,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
 						},
 						"method": "PATCH",
 						"header": [],
@@ -790,24 +611,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics/d032fd7b-a3a4-431f-936b-616589c18eaa",
-							"protocol": "https",
-							"host": [
-								"staging",
-								"api-php",
-								"boilerplate",
-								"hng",
-								"tech"
-							],
-							"path": [
-								"api",
-								"v1",
-								"help-center",
-								"topics",
-								"d032fd7b-a3a4-431f-936b-616589c18eaa"
-							]
-						}
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics/9cd3626b-df1f-4029-b9dd-13da4e41e868"
 					},
 					"response": []
 				},
@@ -840,8 +644,8 @@
 									"pm.test(\"Successful DELETE request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
 									"});",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});"
 								],
 								"type": "text/javascript",
@@ -852,13 +656,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM5NjQwOSwiZXhwIjoxNzI0NDAwMDA5LCJuYmYiOjE3MjQzOTY0MDksImp0aSI6IkVTanN1ZjFlcmdZMExOaEkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.QYyKJRBrVF68M7C8-dPB3e7faq-Uu-aknzCqYCZDn9Y"
+							}
 						},
 						"method": "DELETE",
 						"header": [],
@@ -871,8 +671,1135 @@
 								}
 							}
 						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics/d032fd7b-a3a4-431f-936b-616589c18eaa"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Retrieve notifications",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"try {",
+									"    const response = await pm.sendRequest({",
+									"        url: \"https://staging.api-php.boilerplate.hng.tech/api/v1/notifications\",",
+									"        method: \"GET\"",
+									"    });",
+									"",
+									"    console.log(response.json());",
+									"} catch (err) {",
+									"    console.error(err);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/notifications"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email Templates",
+			"item": [
+				{
+					"name": "Retrieve all email templates",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"try {",
+									"    const response = await pm.sendRequest({",
+									"        url: \"https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates\",",
+									"        method: \"GET\"",
+									"    });",
+									"",
+									"    console.log(response.json());",
+									"} catch (err) {",
+									"    console.error(err);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new email template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 204]);",
+									"});",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxMjE3OSwiZXhwIjoxNzI0NDE1Nzc5LCJuYmYiOjE3MjQ0MTIxNzksImp0aSI6IlZNd1pOaDFxNFBoWWJOWm4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.eU02IfIPKcsfStlveLqr-BBFU52Bj4Qiv58nHD4W9nY"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Boilerplate Test\",\n  \"template\": \"Testing\",\n  \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates"
+					},
+					"response": []
+				},
+				{
+					"name": "Partially update an email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"try {",
+									"    const response = await pm.sendRequest({",
+									"        url: \"https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates/9cd56f6c-2f2f-42a9-a75e-65a43df37923\",",
+									"        method: \"PATCH\"",
+									"    });",
+									"",
+									"    console.log(response.json());",
+									"} catch (err) {",
+									"    console.error(err);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PATCH request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQwNDAyMiwiZXhwIjoxNzI0NDA3NjIyLCJuYmYiOjE3MjQ0MDQwMjIsImp0aSI6InR5dUNRcWdaSFdtTWVnakgiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aTbjnx0-osd45C4mm1bAAWUT8tCoxviYQEmBMX3wfWk"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Boilerplate\",\n  \"template\": \"Testing Boilerplate\",\n  \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates/9cd56f6c-2f2f-42a9-a75e-65a43df37923"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Billing",
+			"item": [
+				{
+					"name": "Retrieve all biling plans",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"try {",
+									"    const response = await pm.sendRequest({",
+									"        url: \"https://staging.api-php.boilerplate.hng.tech/api/v1/billing-plans\",",
+									"        method: \"GET\"",
+									"    });",
+									"",
+									"    console.log(response.json());",
+									"} catch (err) {",
+									"    console.error(err);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQwNDAyMiwiZXhwIjoxNzI0NDA3NjIyLCJuYmYiOjE3MjQ0MDQwMjIsImp0aSI6InR5dUNRcWdaSFdtTWVnakgiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aTbjnx0-osd45C4mm1bAAWUT8tCoxviYQEmBMX3wfWk"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/billing-plans"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cookies",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"try {",
+									"    const response = await pm.sendRequest({",
+									"        url: \"https://staging.api-php.boilerplate.hng.tech/cookies/preferences\",",
+									"        method: \"GET\"",
+									"    });",
+									"",
+									"    console.log(response.json());",
+									"} catch (err) {",
+									"    console.error(err);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET Request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDUyMzYyMywiZXhwIjoxNzI0NTI3MjIzLCJuYmYiOjE3MjQ1MjM2MjMsImp0aSI6IjZUOHo3bTkzd0VFVXByaGgiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.XIbfK1NFmKXT73UuWA2PbQTz1Q4dCOkfSCnwJVknUV8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/cookies/preferences"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"User Registered Successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Rayo\",\n  \"last_name\": \"Jayne\",\n  \"email\": \"rayo34567@yopmail.com\",\n  \"password\": \"Moveon@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Login Successful\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n   \"email\": \"rayo3@yopmail.com\",\n  \"password\": \"Moveon@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "log out",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Logout Successful\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM1NjUxMywiZXhwIjoxNzI0MzYwMTEzLCJuYmYiOjE3MjQzNTY1MTMsImp0aSI6IlMxem5ObmNUMUl2ZmFHVkkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nlZ9CYqnfSCjtL8c9WGAVXx1HMQPEtBKeUjucgFy8og"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"bulldozeradmin@hng.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/logout"
+					},
+					"response": []
+				},
+				{
+					"name": "Password Reset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Email Sent Successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n  \"email\": \"rayo34@yopmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/password-reset-email"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password with token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Password Reset Successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM2ODEyNiwiZXhwIjoxNzI0MzcxNzI2LCJuYmYiOjE3MjQzNjgxMjYsImp0aSI6ImkzbktPSXRDZ1JJaGQ1MDciLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dYwXwgbW8GgVItdH_qK945hiUxV7O7GQerN2GsbVq5I"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"rayo34@yopmail.com\",\n  \"password\": \"Moveon@123\",\n  \"password_confirmation\": \"Moveon@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/request-password-request/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM2ODEyNiwiZXhwIjoxNzI0MzcxNzI2LCJuYmYiOjE3MjQzNjgxMjYsImp0aSI6ImkzbktPSXRDZ1JJaGQ1MDciLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dYwXwgbW8GgVItdH_qK945hiUxV7O7GQerN2GsbVq5I"
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Login Successful\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5zdGFnaW5nLmRlbHZlLmZ1bi9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDMyMDkxNSwiZXhwIjoxNzI0NDkzNzE1LCJuYmYiOjE3MjQzMjA5MTUsImp0aSI6Ikc4eUh6M0U1SzBldldJYVMiLCJzdWIiOiI2MTI2YTNjYy1mZWE4LTRmODctYWIzZi1mNTgzYjVmOWQ5NGEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PXembShV1XmD6RhovmCzJUN3E1Nzvs0uXTbsaot-M6k"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"bulldozeradmin@hng.com\",\n  \"password\": \"@Bulldozer01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Password reset instructions sent\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"rayo34@yopmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Forgotten Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Password reset successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM2ODEyNiwiZXhwIjoxNzI0MzcxNzI2LCJuYmYiOjE3MjQzNjgxMjYsImp0aSI6ImkzbktPSXRDZ1JJaGQ1MDciLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dYwXwgbW8GgVItdH_qK945hiUxV7O7GQerN2GsbVq5I\",\n  \"email\": \"rayo34@yopmail.com\",\n  \"password\": \"Moveon@123\",\n  \"password_confirmation\": \"Moveon@12234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/reset-forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"OTP verified successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"rayo34@yopmail.com\",\n  \"token\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/verify-otp"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"authentication\" feature endpoints."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"User statistics retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3MDk0MiwiZXhwIjoxNzI0Mzc0NTQyLCJuYmYiOjE3MjQzNzA5NDIsImp0aSI6Iko0VXM1WVk4ZGppUHlKQ0kiLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.m4y-rj8nKt7sOmokz8ySvMdrTStfNvB7Cr7VUAEob94"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/users/stats"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"List of users retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3MDk0MiwiZXhwIjoxNzI0Mzc0NTQyLCJuYmYiOjE3MjQzNzA5NDIsImp0aSI6Iko0VXM1WVk4ZGppUHlKQ0kiLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.m4y-rj8nKt7sOmokz8ySvMdrTStfNvB7Cr7VUAEob94"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/users/stats"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"user\" feature endpoints."
+		},
+		{
+			"name": "Inquiries",
+			"item": [
+				{
+					"name": "Send an inquiry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Inquiry sent successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Rayo Jayne\",\n  \"email\": \"rayo34@yopmail.com\",\n  \"message\": \"I have a question about your services.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/inquiries"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all inquiries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Inquiries retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3MjYwMiwiZXhwIjoxNzI0Mzc2MjAyLCJuYmYiOjE3MjQzNzI2MDIsImp0aSI6IlRyU0l5SURRdm5LRzJXY24iLCJzdWIiOiI5Y2Q0NGQ0Zi1mMjdiLTQ3YjQtYTVhOS1mODU5NDFhMTYyOGMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WWwzhJBS4GyV3s5S8FvzMkmputcNcTeJ930MlPNK9Wo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/inquiries"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"inquiries\" feature endpoints."
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Get all latest blog posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Latest blogs retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/blogs/latest"
+					},
+					"response": []
+				},
+				{
+					"name": "Search blog post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Search results retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "\"title\"",
+									"value": "\"Testing\"",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/blogs/search"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all blogs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Blogs retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/blogs"
+					},
+					"response": []
+				},
+				{
+					"name": "Create  a blog post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQxNTM4NSwiZXhwIjoxNzI0NDE4OTg1LCJuYmYiOjE3MjQ0MTUzODUsImp0aSI6InpxVXdlT0dkTFJ3aUpvbmkiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zZGW8MHo_U4Gofzkk9uRXYYGscH-TYTNUfuKmPqIS6g"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"price\",\n  \"content\": \"Pricing\",\n  \"category\": \"Question\",\n  \"image_url\":  [\n    \"chat.png\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/help-center/topics/d032fd7b-a3a4-431f-936b-616589c18eaa",
+							"raw": "https://staging.api-php.boilerplate.hng.tech/api/v1/blogs",
 							"protocol": "https",
 							"host": [
 								"staging",
@@ -884,15 +1811,659 @@
 							"path": [
 								"api",
 								"v1",
-								"help-center",
-								"topics",
-								"d032fd7b-a3a4-431f-936b-616589c18eaa"
+								"blogs"
+							],
+							"query": [
+								{
+									"key": "\"title\"",
+									"value": "\"price\"",
+									"disabled": true
+								}
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get a specific blog post{ID}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Successful response\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseURL}}/blogs/9cac02fb-96ad-4b68-95bd-152df0553fd7"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a blog post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2RlcGxveW1lbnQuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyMjYyNDI5OSwiZXhwIjoxNzIyNjI3ODk5LCJuYmYiOjE3MjI2MjQyOTksImp0aSI6IktmVlVoaVJmcGtpWXEwV2UiLCJzdWIiOiI5Y2E5YjgyOC01OTk4LTRjZDMtYmUxNi1hOWNhMzNiZTllNGYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GNq8Hck2wBTZXehgoonyxT7Xk2PDqSF4G_itChzi8fc"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": "{{baseURL}}/blogs/edit/ebbe66bb-8625-40a8-9228-473c93de7ddf"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a blog post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2RlcGxveW1lbnQuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyMjYyNDI5OSwiZXhwIjoxNzIyNjI3ODk5LCJuYmYiOjE3MjI2MjQyOTksImp0aSI6IktmVlVoaVJmcGtpWXEwV2UiLCJzdWIiOiI5Y2E5YjgyOC01OTk4LTRjZDMtYmUxNi1hOWNhMzNiZTllNGYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GNq8Hck2wBTZXehgoonyxT7Xk2PDqSF4G_itChzi8fc"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseURL}}/blogs/9cac02fb-96ad-4b68-95bd-152df0553fd7"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"blogs\" feature endpoints."
+		},
+		{
+			"name": "Squeeze",
+			"item": [
+				{
+					"name": "Create a squeeze page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Squeeze page created successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"rayo4@yopmail.com\",\n   \"password\": \"Moveon@123\",\n   \"first_name\": \"Ray\",\n   \"last_name\": \"Jayne\",\n   \"phone\": \"09086567862\",\n   \"location\": \"London\",\n    \"job_title\": \"Tester\",\n    \"company\":  \"HNG\",\n    \"interests\": [\"Product Testing\"\n    ],\n    \"referral_source\": \"0976546\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/squeeze"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all squeeze pages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Squeeze page users retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3NTU5MiwiZXhwIjoxNzI0Mzc5MTkyLCJuYmYiOjE3MjQzNzU1OTIsImp0aSI6IndkT0N3V2VSbzVBa0xhbGsiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.9U1kCTz3_JieMRY3nQyjSmq2M6uvh-f4rtGiiA_taKM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/squeeze-pages-users"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"squeeze\" feature endpoints."
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get list of users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Users list retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQwNjg4MCwiZXhwIjoxNzI0NDEwNDgwLCJuYmYiOjE3MjQ0MDY4ODAsImp0aSI6Imhmb2Z2U1p3akdGa2hDcnIiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kA-urmNiPaLKktCeHORmkDU4jWl4MpiDKqKKNIwV6Zo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/users-list"
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Create email request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Invalid credentials\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQwOTE4NiwiZXhwIjoxNzI0NDEyNzg2LCJuYmYiOjE3MjQ0MDkxODYsImp0aSI6IjB4RXljVjduWlBYa0JXWE4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.uN-Xs0HnPOUxW0zgyJfHNZrBHyawTyfnys-O1XOOnYU"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n  \"email\": \"rayo34@yopmail.com\",\n  \"subject\": \"request\",\n  \"message\": \"email request to HNG\",\n   \"template_id\": \"9cd56f6c-2f2f-42a9-a75e-65a43df37923\",\n   \"status\": true,\n   \"recipient\": \"rayo34@yopmail.com\"\n\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/email-requests"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new email template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Email template created successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDQwOTE4NiwiZXhwIjoxNzI0NDEyNzg2LCJuYmYiOjE3MjQ0MDkxODYsImp0aSI6IjB4RXljVjduWlBYa0JXWE4iLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.uN-Xs0HnPOUxW0zgyJfHNZrBHyawTyfnys-O1XOOnYU"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Boilerplate\",\n  \"template\": \"Testing\",\n  \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/email-templates"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invitation",
+			"item": [
+				{
+					"name": "Generate an invite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Invitation generated successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3NjU4NCwiZXhwIjoxNzI0MzgwMTg0LCJuYmYiOjE3MjQzNzY1ODQsImp0aSI6IkFLQjFTSEtyejV6WVJSV1ciLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pjIY8zQcX3zqp7efwfyNjRQlXYmcXnOzwRpYqGUxdE4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"rayo34@yopmail.com\",\n  \"role\": \"admin\",\n  \"org_id\": \"9cd44d4f-ffce-4cd6-a3fc-09efe183fff7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/invitations/generate"
+					},
+					"response": []
+				},
+				{
+					"name": "Accept an invitation(POST method)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Invitation accepted successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"invitation_link\": \"4D1D0naZvQShiDIJ5HtcRFC8AnVR0aro\",\n  \"name\": \"Rayo Jayne\",\n  \"password\": \"Moveon@123\",\n  \"password_confirmation\": \"Moveon@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/invite"
+					},
+					"response": []
+				}
+			],
+			"description": "All \"user preference\" feature endpoints."
+		},
+		{
+			"name": "FAQ",
+			"item": [
+				{
+					"name": "Create a new FAQ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"FAQ created successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3OTIwNSwiZXhwIjoxNzI0MzgyODA1LCJuYmYiOjE3MjQzNzkyMDUsImp0aSI6Im5zTzRYVzZranRYYWNRaGUiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.DcT-5KGxKt2H6alq3d_3S6nOBdbnpb_vexGmNSzit4g"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"question\": \"I want to know what is going on\",\n            \"answer\": \"What is going on is fair why do you want to know?\",\n            \"category\": \"Policy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/faqs"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all FAQs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"FAQs retrieved successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/faqs"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific FAQ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/faqs/75da23df-c27b-4a8a-a307-55c82a13dfda"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific FAQ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"FAQ updated successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3OTY5NCwiZXhwIjoxNzI0MzgzMjk0LCJuYmYiOjE3MjQzNzk2OTQsImp0aSI6Inc3UFRYanBZZ0ZFb21PVmYiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.XMm-SgOCXGLjJYUKf-s1hRVHPETtP8a2NSDCMGc3AzU"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"question\": \"What is this platform for?\",\n        \"answer\": \"This platform is designed to help you learn languages through interactive quests and games as you connect with others.\",\n        \"category\": \"General\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/faqs/75da23df-c27b-4a8a-a307-55c82a13dfda"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a FAQ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"FAQ deleted successfully\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"\");",
+									"});",
+									"",
+									"pm.test(\"API is available\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is below 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYXBpLXBocC5ib2lsZXJwbGF0ZS5obmcudGVjaC9hcGkvdjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyNDM3OTY5NCwiZXhwIjoxNzI0MzgzMjk0LCJuYmYiOjE3MjQzNzk2OTQsImp0aSI6Inc3UFRYanBZZ0ZFb21PVmYiLCJzdWIiOiI5Y2QzNjI2Yi1kZjFmLTQwMjktYjlkZC0xM2RhNGU0MWU4NjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.XMm-SgOCXGLjJYUKf-s1hRVHPETtP8a2NSDCMGc3AzU"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/faqs/33c7b2de-e5bc-49db-8041-cb2f404ab048"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"bulldozeradmin@hng.com\",\n  \"password\": \"@Bulldozer01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://staging.api-php.boilerplate.hng.tech/api/v1/auth/login"
+			},
+			"response": []
 		}
 	]
 }
